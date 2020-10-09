@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Mainpage from './containers/Mainpage/Mainpage';
 import Header from './components/Header/Header';
+import StartingPage from './containers/StartingPage/StartingPage';
 
 class App extends Component {
 
@@ -8,8 +9,8 @@ class App extends Component {
         return (
           <div>
             <Header />
-            
-          </div>
+            <StartingPage />
+          </div>   
         );
     }
 }

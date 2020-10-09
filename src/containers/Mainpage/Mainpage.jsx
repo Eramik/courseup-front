@@ -5,7 +5,7 @@ export class Mainpage extends Component {
     render() {
         return (
             <main className={styles.Mainpage}>
-                Mainpage contentesferc
+                Mainpage content
             </main>
         );
     }

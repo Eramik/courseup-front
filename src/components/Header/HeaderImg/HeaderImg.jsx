@@ -3,7 +3,7 @@ import styles from './HeaderImg.module.scss';
 
 const HeaderImg = (props) => {
     return (
-        <img src="....../public/img/HeaderImg.png" alt="lorggggggem" className={styles.HeaderImg}></img>
+        <img src="...../public/img/HeaderImg.png" alt="logggrgem" className={styles.HeaderImg}></img>
     );
 }
 
