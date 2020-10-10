@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styles from './StartingPage.module.scss';
 import Button from '../../components/UI/Button/Button';
 import Reason from '../../components/Reason/Reason';
-import  StartingBackgroundImg from '../../components/StartingBackground/StartingBackgroundImg';
+import StartingBackgroundImg from '../../components/StartingBackground/StartingBackgroundImg';
 
 export class StartingPage extends Component {
     render() {

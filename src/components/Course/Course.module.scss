@@ -1,0 +1,25 @@
+.Course {
+    width: 240px; 
+    height: 325px;
+    font-size: 100%;
+    padding: 5px; 
+    border: solid 3px #309c8a; 
+    float: left; 
+    position: relative; 
+    top: 100px; 
+    left: 150px; 
+    border-radius: 1rem;
+    margin-right: 5%;
+}
+.Course:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.li {
+    list-style-type: none;
+}
+.ul {
+    margin-left: 0;
+    padding-left: 0;
+}
