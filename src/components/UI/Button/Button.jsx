@@ -3,8 +3,8 @@ import styles from './Button.module.scss';
 
 const Button = (props) => {
     return (
-        <button className={styles.Button}>
-            Sign up
+        <button  className={styles.Button}>
+            {props.children}
         </button>
     );
 }
