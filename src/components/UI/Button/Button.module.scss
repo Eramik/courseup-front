@@ -1,24 +1,18 @@
 .Button{
-    
-    height: 1rem;
-    background-color: #00ccc4;
-    padding: 2rem;
-    color: #fff;
-    text-align: center;
-    font-size: 2rem;
-    position: absolute;
-    top: 2.5rem;
-    left: 140rem;
-    margin-right: 2rem;
-    border-radius: 1rem;
-    vertical-align: middle;
-    line-height: 0.1rem;
-    border-color: #fff;
-    border-width: 0.3rem;
+        padding: 2rem;
+        height: 6rem;
+        background-color: #00ccc4;
+        color: #fff;
+        text-align: center;
+        font-size: 3rem;
+        position: absolute;
+        margin-right: 2rem;
+        border-radius: 1rem;
+        vertical-align: middle;
+        line-height: 0.1rem;
+        border-color: #fff;
+        border-width: 0.3rem;
 }
 .Button:hover{
     background-color: #00a8c9;
-}
-.ButtonStartingPage{
-
 }

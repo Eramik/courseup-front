@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './HeaderImg.module.scss';
+import LogoHeader from '../../../img/HeaderImg.png';
 
 const HeaderImg = (props) => {
     return (
-        <img src="./../../public/img/HeaderImg.png" alt="logggrgemm" className={styles.HeaderImg}></img>
+        <img src={LogoHeader} alt="logo" className={styles.HeaderImg}></img>
     );
 }
 
