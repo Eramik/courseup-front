@@ -1,5 +1,30 @@
 .StartingPage {
-    // background-color: url(../.../);
-    // background-position: center;
-    // background-size: cover;
+     background-image: url(../../img/BackImg.png);
+     background-position: center;
+     background-size: cover;
+     position: absolute;
+     height: 75rem;
+     width: 153rem;
+}
+.Text{
+    font-style: italic;
+    top: 28%;
+    left: 26%;
+    position: absolute;
+    color: #ffffff;
+}
+.ReasonContainer{
+    padding: 10rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    top:105%;
+    position: absolute;
+}
+.TextWhy{
+    color: #000000;
+    position: absolute;
+    padding: 5rem;
+    top: 95%;
+    left: 29%;
 }

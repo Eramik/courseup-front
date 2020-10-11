@@ -3,9 +3,9 @@ import styles from './Reason.module.scss';
 
 const Reason = (props) => {
     return (
-        <div className={styles.Reason}>
+        <figure className={styles.Reason}>
             {props.children}
-        </div>
+        </figure>
     );
 }
 

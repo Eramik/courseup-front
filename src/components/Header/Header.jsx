@@ -7,7 +7,9 @@ const Header = (props) => {
     return (
         <header className={styles.Header}>
             <HeaderImg />
-            <Button top="2rem" left="135rem">Sign up</Button>
+            <div style={{top:"3%", left:"89%", position: "absolute"}}>
+                <Button>Sign up</Button>
+            </div>
         </header>
     );
 }

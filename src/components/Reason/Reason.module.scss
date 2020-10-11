@@ -1,7 +1,10 @@
 .Reason{
-    height: 30rem;
-    width: 30rem;
-    border: solid 0.5rem;
-    top: 100rem;
-    left: 20rem;
+    width: 100%;
+    height: max-content;
+    font-size: 2rem;
+    padding: 1.5rem; 
+    border: solid 3px #000000; 
+    border-radius: 1rem;
+    transition: all .2s;
+    cursor: pointer;
 }
