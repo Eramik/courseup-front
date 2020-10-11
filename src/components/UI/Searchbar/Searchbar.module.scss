@@ -1,0 +1,24 @@
+.Searchbar {
+    padding: 2rem;
+    border-left: 2px solid #ccc;
+    background-color: #212121;
+    display: flex;
+    font-size: 1.8rem;
+
+    // all direct children of searchbar
+    & > * {
+        margin-right: 4rem;
+    }
+
+    select {
+        font: inherit;
+    }
+
+    .Search {
+        width: 50%;
+        border: none;
+        font: inherit;
+        border-radius: 10px;
+        padding: .5rem 1rem;
+    }
+}
