@@ -4,7 +4,8 @@ import BackgroundStartingPageImg from '../../img/BackgroundStartingPageImg.png';
 
 const StartingBackgroundImg = (props) => {
     return (
-        <img src={BackgroundStartingPageImg} alt="logo" className={styles.BackgroundStartingPageImg}></img>
+        <img src={BackgroundStartingPageImg} alt="logo" className={styles.BackgroundStartingPageImg}>
+        </img>
     );
 }
 

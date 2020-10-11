@@ -9,7 +9,7 @@ export class StartingPage extends Component {
         return (
             <main className={styles.StartingPage}>
                 <StartingBackgroundImg />
-                <Button padding="1rem" top="50rem" left="100rem">Go to courses</Button>
+                <Button padding="1rem" top="50rem" left="60rem">↓ Go to courses ↓</Button>
                 <Reason>Наши курсы наиболее полные и так далее..</Reason>
                 <Reason>Наши курсы наиболее полные и так далее..</Reason>
                 <Reason>Наши курсы наиболее полные и так далее..</Reason>
@@ -17,5 +17,5 @@ export class StartingPage extends Component {
         );
     }
 }
-
 export default StartingPage
+

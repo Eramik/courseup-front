@@ -1,5 +1,5 @@
 .Button{
-        padding: 2rem;
+        padding: 1.5rem;
         height: 6rem;
         background-color: #00ccc4;
         color: #fff;
@@ -12,6 +12,7 @@
         line-height: 0.1rem;
         border-color: #fff;
         border-width: 0.3rem;
+        font-weight: bold;
 }
 .Button:hover{
     background-color: #00a8c9;
