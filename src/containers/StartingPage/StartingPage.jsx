@@ -19,9 +19,9 @@ export class StartingPage extends Component {
                 </div>
                 <h1 className={styles.TextWhy}>Why should you choose us?</h1>
                 <div className={styles.ReasonContainer}>
-                    <Reason>Тест Тест Тест.Тест.Тест.Тест Тест.Тест. Тест.Тест Тест.Тест. Тест.Тест Тест.Тест. Тест.Тест</Reason>
-                    <Reason>Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест</Reason>
-                    <Reason>Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест.Тест</Reason>                   
+                    <Reason><strong>Highest level courses</strong> supplemented with video materials</Reason>
+                    <Reason><strong>Completely free</strong> learning</Reason>
+                    <Reason>The ability to take <strong>several courses at the same time</strong></Reason>                   
                 </div>
             </main>
         );

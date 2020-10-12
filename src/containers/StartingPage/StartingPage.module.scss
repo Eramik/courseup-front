@@ -18,13 +18,14 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
-    top:105%;
+    top:110%;
     position: absolute;
 }
 .TextWhy{
     color: #000000;
     position: absolute;
     padding: 5rem;
-    top: 95%;
+    top: 100%;
     left: 29%;
+    font-style: italic;
 }
