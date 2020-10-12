@@ -45,15 +45,7 @@ export class Mainpage extends Component {
         ]
     };
 
-    // when component is initially rendered
-    componentDidMount() {
-        // api call -> result
-        // fetch('http://example.com/movies.json')
-        //     .then(data => this.setState({ courses: data }));
-    }
-
     render() {
-        // [{}, {}, {}] => map => [<Course />, <Course />, ...]
         const coursesElements = this.state.courses.map(course => {
             return (
                 <Course

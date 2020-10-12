@@ -1,18 +1,21 @@
 .Button {
+    border: none;
     padding: 1.5rem;
-    height: 6rem;
     background-color: #00ccc4;
     color: #fff;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     border-radius: 1rem;
-    vertical-align: middle;
-    line-height: 0.1rem;
-    border-color: #fff;
-    border-width: 0.3rem;
     font-weight: bold;
-    position: relative;
-}
-.Button:hover {
-    background-color: #00a8c9;
+    transition: all .2s;
+    cursor: pointer;
+
+    .Big {
+        font-size: 3rem;
+    }
+
+    &:hover {
+        background-color: #00a8c9;
+        transform: scale(1.02);
+    }
 }

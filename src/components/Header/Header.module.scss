@@ -1,6 +1,23 @@
 .Header {
+    display: flex;
     height: 10rem;
     background-color: #309c8a;
-    padding: 2rem;
     color: #fff;
+
+    .AuthSection {
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .HeaderImage {
+        display: block;
+        margin-right: auto;
+        height: 100%;
+    }
+
+    img {
+        height: 100%;
+        width: 20rem;
+    }
 }
