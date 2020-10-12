@@ -1,0 +1,52 @@
+.StartingPage {
+    h1 {
+        font-size: 4rem;
+        font-style: italic;
+        margin-bottom: 2.5rem;
+    }
+
+    h2 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #000;
+        text-align: center;
+        font-style: italic;
+        margin-bottom: 3rem;
+    }
+}
+
+.InitialSection {
+    background-image: url(../../img/BackImg.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+.InfoCentered {
+    padding: 2rem;
+    background-color: rgba(#000, 0.7);
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.SectionReasons {
+    margin: 5rem auto;
+    max-width: 114rem;
+    padding: 1rem;
+}
+
+.ReasonContainer {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    align-items: start;
+    align-content: space-evenly;
+    grid-gap: 2rem;
+}
