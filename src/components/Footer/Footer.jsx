@@ -3,6 +3,7 @@ import styles from './Footer.module.scss';
 import FooterLogoFacebook from '../../img/FooterLogoFacebook.png';
 import FooterLogoTelegram from '../../img/FooterLogoTelegram.png';
 import FooterLogoInstagram from '../../img/FooterLogoInstagram.png';
+
 const Footer = (props) => {
     return (
         <footer className={styles.Footer}>
