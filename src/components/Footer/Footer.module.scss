@@ -1,20 +1,25 @@
 .Footer {
+    display: flex;
+    flex: 0 0 auto;
     color: white;
-    background: #309c8a;    
-    grid-area: footer;
-    grid-row: row3;
+    background: #309c8a;  
+
     height: 10rem;   
     .FooterText{
         color: white;
         font-weight: normal;
+        position: absolute;
+        margin-left: 10%;
     }
     .FooterImage{
         display: inline-flex;
+        background-color: #309c8a;
+        margin-left: auto;
         margin-right: auto;
-        height: 100%;
     }
     img {
-        height: 100%;
-        width: 10rem;
+        height: 50%;
+        width: 5rem;
+        background-color: #309c8a;
     }
 }
