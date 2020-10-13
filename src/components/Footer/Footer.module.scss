@@ -23,5 +23,10 @@
         background-color: #309c8a;
         margin-top: 15%;
         margin-left: 15%;
+        transition: all .2s;
+        cursor: pointer;
+    }
+    img:hover {
+        transform: scale(1.15);
     }
 }
