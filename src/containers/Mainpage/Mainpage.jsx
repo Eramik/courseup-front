@@ -11,36 +11,36 @@ export class Mainpage extends Component {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'computers',
-                difficulty: 'beginner',
-                rating: '4.7'
+                difficulty: 'middle',
+                rating: '4.0'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'technique',
                 difficulty: 'beginner',
-                rating: '4.7'
+                rating: '4.5'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'computers',
                 difficulty: 'beginner',
-                rating: '4.7'
+                rating: '5'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'other',
                 difficulty: 'beginner',
-                rating: '4.7'
+                rating: '3'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'other',
-                difficulty: 'beginner',
-                rating: '4.7'
+                difficulty: 'advanced',
+                rating: '4.1'
             }
         ],
         coursesToDisplay: [],
@@ -62,6 +62,14 @@ export class Mainpage extends Component {
     // the same with ratings/diffcilty/search
     changeCategoryHandler = (category) => {
         const updatedCourses = this.state.courses.filter(course => course.category === category);
+        this.setState({ coursesToDisplay: updatedCourses });
+    }
+    changeRatingHandler = (rating) => {
+        const updatedCourses = this.state.courses.filter(course => course.rating >= rating);
+        this.setState({ coursesToDisplay: updatedCourses });
+    }
+    changeDifficultyHandler = (difficulty) => {
+        const updatedCourses = this.state.courses.filter(course => course.difficulty === difficulty);
         this.setState({ coursesToDisplay: updatedCourses });
     }
 
@@ -86,7 +94,10 @@ export class Mainpage extends Component {
                 />
                 <div style={{ flex: 1 }}>
                     {/* Route path='/courses' component CoursesPage */}
-                    <Searchbar courseName={this.state.courseName} />
+                    <Searchbar courseName={this.state.courseName}
+                        ratingChanged={this.changeRatingHandler}
+                        difficultyChanged={this.changeDifficultyHandler}
+                    />
                     <div className={styles.CoursesContainer}>{coursesElements}</div>
                     {/* Route path='/courses/:courseId' component CoursePage */}
                 </div>
