@@ -3,7 +3,7 @@ import styles from './Searchbar.module.scss';
 
 const Searchbar = (props) => {
     const { ratingChanged } = props;
-    const { difficultyChanged } = props;
+    const { difficultyChanged, difficultyCleared } = props;
     function changeRatingFunc(){
         var selectBox1 = document.getElementById("selectBox1");
         var selectedValue1 = selectBox1.options[selectBox1.selectedIndex].value;
@@ -12,7 +12,12 @@ const Searchbar = (props) => {
     function changeDifficultyFunc(){
         var selectBox = document.getElementById("selectBox");
         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-        difficultyChanged(selectedValue);
+        if(selectedValue === "all"){
+            difficultyCleared();
+        }
+        else{
+            difficultyChanged(selectedValue);
+        }
     }
     return (
         <div className={styles.Searchbar}>
@@ -26,6 +31,9 @@ const Searchbar = (props) => {
                 placeholder="Search courses by name"
             />
             <select name="difficulty" id="selectBox" onChange={() => changeDifficultyFunc()}>
+                <option value="all">
+                    All
+                </option>
                 <option value="beginner">
                     Beginner
                 </option>
@@ -40,7 +48,7 @@ const Searchbar = (props) => {
                 <option value="3.5">
                     3.5+
                 </option>
-                <option value="4">           
+                <option value="4">
                    4+
                 </option>
                 <option value="4.5">

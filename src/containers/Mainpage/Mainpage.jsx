@@ -33,10 +33,10 @@ export class Mainpage extends Component {
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'other',
                 difficulty: 'beginner',
-                rating: '3'
+                rating: '3.5'
             },
             {
-                name: 'JS for beginners',
+                name: 'JS',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'other',
                 difficulty: 'advanced',
@@ -56,6 +56,10 @@ export class Mainpage extends Component {
     }
 
     clearCategoryHandler = () => {
+        this.setState({ coursesToDisplay: [...this.state.courses] });
+    }
+    
+    clearDifficultyHandler = () => {
         this.setState({ coursesToDisplay: [...this.state.courses] });
     }
 
@@ -97,6 +101,7 @@ export class Mainpage extends Component {
                     <Searchbar courseName={this.state.courseName}
                         ratingChanged={this.changeRatingHandler}
                         difficultyChanged={this.changeDifficultyHandler}
+                        difficultyCleared={this.clearDifficultyHandler}
                     />
                     <div className={styles.CoursesContainer}>{coursesElements}</div>
                     {/* Route path='/courses/:courseId' component CoursePage */}
