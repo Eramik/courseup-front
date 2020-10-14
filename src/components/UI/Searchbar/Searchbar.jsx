@@ -1,10 +1,18 @@
-import React from 'react'
+import React from 'react';
 import styles from './Searchbar.module.scss';
 
 const Searchbar = (props) => {
     return (
         <div className={styles.Searchbar}>
-            <input className={styles.Search}type="text" name="search" id="search" placeholder="Search courses by name" />
+            <input
+                className={styles.Search}
+                value={props.courseName}
+                // onChange={() => { // change courseName in Mainpage }}
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search courses by name"
+            />
             <select name="difficulty">
                 <option value="beginner">Beginner</option>
                 <option value="middle">Middle</option>
@@ -16,7 +24,7 @@ const Searchbar = (props) => {
                 <option value="4.5+">4.5+</option>
             </select>
         </div>
-    )
-}
+    );
+};
 
-export default Searchbar
+export default Searchbar;

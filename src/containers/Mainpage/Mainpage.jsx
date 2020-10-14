@@ -10,43 +10,63 @@ export class Mainpage extends Component {
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'Computers',
+                category: 'computers',
                 difficulty: 'beginner',
                 rating: '4.7'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'Computers',
+                category: 'technique',
                 difficulty: 'beginner',
                 rating: '4.7'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'Computers',
+                category: 'computers',
                 difficulty: 'beginner',
                 rating: '4.7'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'Computers',
+                category: 'other',
                 difficulty: 'beginner',
                 rating: '4.7'
             },
             {
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'Computers',
+                category: 'other',
                 difficulty: 'beginner',
                 rating: '4.7'
             }
-        ]
+        ],
+        coursesToDisplay: [],
+        courseName: 'course'
     };
 
+    componentDidMount() {
+        // 1. api call => response
+        // 2. this.setState(response: courses)
+
+        // 3. courses to display = courses
+        this.setState({ coursesToDisplay: [...this.state.courses] });
+    }
+
+    clearCategoryHandler = () => {
+        this.setState({ coursesToDisplay: [...this.state.courses] });
+    }
+
+    // the same with ratings/diffcilty/search
+    changeCategoryHandler = (category) => {
+        const updatedCourses = this.state.courses.filter(course => course.category === category);
+        this.setState({ coursesToDisplay: updatedCourses });
+    }
+
     render() {
-        const coursesElements = this.state.courses.map(course => {
+        const coursesElements = this.state.coursesToDisplay.map(course => {
             return (
                 <Course
                     name={course.name}
@@ -60,12 +80,15 @@ export class Mainpage extends Component {
 
         return (
             <main className={styles.Mainpage}>
-                <Sidebar />
+                <Sidebar
+                    categoryChanged={this.changeCategoryHandler}
+                    categoryCleared={this.clearCategoryHandler}
+                />
                 <div style={{ flex: 1 }}>
-                    <Searchbar />
-                    <div className={styles.CoursesContainer}>
-                        {coursesElements}
-                    </div>
+                    {/* Route path='/courses' component CoursesPage */}
+                    <Searchbar courseName={this.state.courseName} />
+                    <div className={styles.CoursesContainer}>{coursesElements}</div>
+                    {/* Route path='/courses/:courseId' component CoursePage */}
                 </div>
             </main>
         );
