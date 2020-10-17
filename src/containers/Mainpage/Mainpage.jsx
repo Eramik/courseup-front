@@ -44,7 +44,7 @@ export class Mainpage extends Component {
             }
         ],
         coursesToDisplay: [],
-        courseName: 'course'
+        searchValue: ''
     };
 
     componentDidMount() {
@@ -57,25 +57,32 @@ export class Mainpage extends Component {
 
     clearCategoryHandler = () => {
         this.setState({ coursesToDisplay: [...this.state.courses] });
-    }
-    
-    clearDifficultyHandler = () => {
-        this.setState({ coursesToDisplay: [...this.state.courses] });
-    }
+    };
 
-    // the same with ratings/diffcilty/search
-    changeCategoryHandler = (category) => {
-        const updatedCourses = this.state.courses.filter(course => course.category === category);
+    filterHandler = (course, filterType, filterValue) => {
+        switch (filterType) {
+            case 'category':
+                return course.category === filterValue;
+            case 'rating':
+                return course.rating >= filterValue;
+            case 'difficulty':
+                return filterValue === 'all' ? true: course.difficulty === filterValue;
+            case 'name':
+                return this.state.searchValue === '' ? true : course.name.includes(this.state.searchValue)
+            default:
+                return course;
+        }
+    }  
+
+    applyFiltersHandler = (filterType, filterValue) => {
+        let updatedCourses = [...this.state.coursesToDisplay];
+        updatedCourses = this.state.courses
+            .filter(course => this.filterHandler(course, filterType, filterValue))
+
         this.setState({ coursesToDisplay: updatedCourses });
-    }
-    changeRatingHandler = (rating) => {
-        const updatedCourses = this.state.courses.filter(course => course.rating >= rating);
-        this.setState({ coursesToDisplay: updatedCourses });
-    }
-    changeDifficultyHandler = (difficulty) => {
-        const updatedCourses = this.state.courses.filter(course => course.difficulty === difficulty);
-        this.setState({ coursesToDisplay: updatedCourses });
-    }
+    };
+
+    changeSearchValueHandler = (value) => this.setState({ searchValue: value });
 
     render() {
         const coursesElements = this.state.coursesToDisplay.map(course => {
@@ -98,9 +105,10 @@ export class Mainpage extends Component {
                 />
                 <div style={{ flex: 1 }}>
                     {/* Route path='/courses' component CoursesPage */}
-                    <Searchbar courseName={this.state.courseName}
-                        ratingChanged={this.changeRatingHandler}
-                        difficultyChanged={this.changeDifficultyHandler}
+                    <Searchbar
+                        searchValue={this.state.searchValue}
+                        searchValueChanged={this.changeSearchValueHandler}
+                        applyFilters={this.applyFiltersHandler}
                         difficultyCleared={this.clearDifficultyHandler}
                     />
                     <div className={styles.CoursesContainer}>{coursesElements}</div>
