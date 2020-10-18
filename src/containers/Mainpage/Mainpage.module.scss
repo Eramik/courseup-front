@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.Container {
+    flex: 1;
+}
+
 .CoursesContainer {
     padding: 1.5rem;
     display: grid;

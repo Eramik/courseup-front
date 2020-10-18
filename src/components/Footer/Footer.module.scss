@@ -1,3 +1,32 @@
 .Footer {
-
+    display: flex;
+    flex: 0 0 auto;
+    color: white;
+    background: #309c8a;  
+    height: 10rem; 
+    .FooterText{
+        color: white;
+        font-weight: normal;
+        position: absolute;
+        margin-left: 18%;
+        margin-top: 2.4%;
+    }
+    .FooterImage{
+        display: inline-flex;
+        background-color: #309c8a;
+        margin-left: 70%;
+        margin-right: 70%;
+    }
+    img {
+        height: 33%;
+        width: 3.3rem;
+        background-color: #309c8a;
+        margin-top: 32%;
+        margin-left: 15%;
+        transition: all .2s;
+        cursor: pointer;
+    }
+    img:hover {
+        transform: scale(1.15);
+    }
 }

@@ -1,16 +1,25 @@
-import React from 'react'
+import React from 'react';
 import styles from './Sidebar.module.scss';
-import { NavLink } from 'react-router-dom';
 
-const Sidebar = (props) => {
+const Sidebar = props => {
+    const { applyFilters, categoryCleared } = props;
+
     return (
         <div className={styles.Sidebar}>
-            <NavLink to='/courses/'>All</NavLink>
-            <NavLink to='/courses/category1'>First</NavLink>
-            <NavLink to='/courses/category2'>Second</NavLink>
-            <NavLink to='/courses/category3'>Third</NavLink>
+            <button to="/courses/" onClick={() => categoryCleared()}>
+                All
+            </button>
+            <button to="/courses/computers" onClick={() => applyFilters('category', 'computers')}>
+                Computers
+            </button>
+            <button to="/courses/other" onClick={() => applyFilters('category', 'other')}>
+                Other
+            </button>
+            <button to="/courses/technique" onClick={() => applyFilters('category', 'technique')}>
+                Technique
+            </button>
         </div>
     );
-}
+};
 
-export default Sidebar
+export default Sidebar;

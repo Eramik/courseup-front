@@ -15,3 +15,26 @@ body {
     padding: 0;
     box-sizing: inherit;
 }
+
+a, button {
+    font: inherit;
+    color: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    text-align: inherit;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.center-content {
+    max-width: 1140px;
+    margin: 0 auto;
+}
