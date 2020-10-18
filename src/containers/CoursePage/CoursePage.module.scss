@@ -1,0 +1,56 @@
+.CoursePage {
+    h2 {
+        font-size: 3.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    h3 {
+        font-size: 3.2rem;
+        margin-bottom: 2rem;
+    }
+
+    h4 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+}
+
+.Header {
+    padding: 2rem 0;
+    background-color: #212121;
+    color: #fff;
+}
+
+.Rating {
+    display: flex;
+
+    & > *:first-child {
+        margin-right: 1rem;
+    }
+}
+
+.MainInfo {
+    padding: 3.5rem 0;
+}
+
+.Description {
+    margin-bottom: 2rem;
+}
+
+.DescriptionText {
+    margin-bottom: 3rem;
+}
+
+.Structure {
+    margin-bottom: 2rem;
+}
+
+.CourseMaterial {
+    display: flex;
+}
+
+.Footer {
+    padding-bottom: 2rem;
+}
+
