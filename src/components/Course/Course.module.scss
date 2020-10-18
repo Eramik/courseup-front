@@ -1,0 +1,43 @@
+.Course {
+    width: 100%;
+    height: max-content;
+    font-size: 1.8rem;
+    padding: 1.5rem; 
+    border: solid 3px #309c8a; 
+    transition: all .2s;
+    cursor: pointer;    
+
+    &:hover {
+        transform: translateY(-3px) scale(1.005);
+    }
+
+    img {
+        width: 100%;
+    }
+
+    h3 {
+        font-size: 2.2rem;
+    }
+
+    .summary {
+        font-size: 1.5rem;
+        font-weight: 300;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .rating {
+        margin-top: 5px;
+    }
+
+    h4 {
+        width: max-content;
+        background-color: #eee;
+        padding: 5px 1rem;
+        margin-bottom: 5px;
+    }
+
+    span {
+        font-weight: 700;
+    }
+}
