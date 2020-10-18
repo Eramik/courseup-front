@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import Course from '../../components/Course/Course';
 import Searchbar from '../../components/UI/Searchbar/Searchbar';
 import Sidebar from '../../components/UI/Sidebar/Sidebar';
@@ -8,6 +10,7 @@ export class Mainpage extends Component {
     state = {
         courses: [
             {
+                id: 1,
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'computers',
@@ -15,6 +18,7 @@ export class Mainpage extends Component {
                 rating: '4.0'
             },
             {
+                id: 2,
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'technique',
@@ -22,6 +26,7 @@ export class Mainpage extends Component {
                 rating: '4.5'
             },
             {
+                id: 3,
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'computers',
@@ -29,6 +34,7 @@ export class Mainpage extends Component {
                 rating: '5'
             },
             {
+                id: 4,
                 name: 'JS for beginners',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'other',
@@ -36,6 +42,7 @@ export class Mainpage extends Component {
                 rating: '3.5'
             },
             {
+                id: 5,
                 name: 'JS',
                 summary: 'Learn JS from scratch and become an awesome developer',
                 category: 'other',
@@ -66,18 +73,19 @@ export class Mainpage extends Component {
             case 'rating':
                 return course.rating >= filterValue;
             case 'difficulty':
-                return filterValue === 'all' ? true: course.difficulty === filterValue;
+                return filterValue === 'all' ? true : course.difficulty === filterValue;
             case 'name':
-                return this.state.searchValue === '' ? true : course.name.includes(this.state.searchValue)
+                return this.state.searchValue === '' ? true : course.name.includes(this.state.searchValue);
             default:
                 return course;
         }
-    }  
+    };
 
     applyFiltersHandler = (filterType, filterValue) => {
         let updatedCourses = [...this.state.coursesToDisplay];
-        updatedCourses = this.state.courses
-            .filter(course => this.filterHandler(course, filterType, filterValue))
+        updatedCourses = this.state.courses.filter((course) =>
+            this.filterHandler(course, filterType, filterValue)
+        );
 
         this.setState({ coursesToDisplay: updatedCourses });
     };
@@ -85,26 +93,27 @@ export class Mainpage extends Component {
     changeSearchValueHandler = (value) => this.setState({ searchValue: value });
 
     render() {
-        const coursesElements = this.state.coursesToDisplay.map(course => {
+        const coursesElements = this.state.coursesToDisplay.map((course) => {
             return (
-                <Course
-                    name={course.name}
-                    summary={course.summary}
-                    category={course.category}
-                    difficulty={course.difficulty}
-                    rating={course.rating}
-                />
+                <Link to={`/courses/${course.id}`}>
+                    <Course
+                        name={course.name}
+                        summary={course.summary}
+                        category={course.category}
+                        difficulty={course.difficulty}
+                        rating={course.rating}
+                    />
+                </Link>
             );
         });
 
         return (
             <main className={styles.Mainpage}>
                 <Sidebar
-                    categoryChanged={this.changeCategoryHandler}
+                    applyFilters={this.applyFiltersHandler}
                     categoryCleared={this.clearCategoryHandler}
                 />
-                <div style={{ flex: 1 }}>
-                    {/* Route path='/courses' component CoursesPage */}
+                <div className={styles.Container}>
                     <Searchbar
                         searchValue={this.state.searchValue}
                         searchValueChanged={this.changeSearchValueHandler}
@@ -112,7 +121,6 @@ export class Mainpage extends Component {
                         difficultyCleared={this.clearDifficultyHandler}
                     />
                     <div className={styles.CoursesContainer}>{coursesElements}</div>
-                    {/* Route path='/courses/:courseId' component CoursePage */}
                 </div>
             </main>
         );
