@@ -1,12 +1,12 @@
 .Button {
+    min-width: 10rem;
     border: none;
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     background-color: #00ccc4;
     color: #fff;
     text-align: center;
     font-size: 2rem;
     border-radius: 1rem;
-    font-weight: bold;
     transition: all .2s;
     cursor: pointer;
 
