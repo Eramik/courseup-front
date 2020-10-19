@@ -6,60 +6,57 @@ import Searchbar from '../../components/UI/Searchbar/Searchbar';
 import Sidebar from '../../components/UI/Sidebar/Sidebar';
 import styles from './Mainpage.module.scss';
 
+const { REACT_APP_API: api } = process.env;
+
 export class Mainpage extends Component {
     state = {
-        courses: [
-            {
-                id: 1,
-                name: 'JS for beginners',
-                summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'computers',
-                difficulty: 'middle',
-                rating: '4.0'
-            },
-            {
-                id: 2,
-                name: 'JS for beginners',
-                summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'technique',
-                difficulty: 'beginner',
-                rating: '4.5'
-            },
-            {
-                id: 3,
-                name: 'JS for beginners',
-                summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'computers',
-                difficulty: 'beginner',
-                rating: '5'
-            },
-            {
-                id: 4,
-                name: 'JS for beginners',
-                summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'other',
-                difficulty: 'beginner',
-                rating: '3.5'
-            },
-            {
-                id: 5,
-                name: 'JS',
-                summary: 'Learn JS from scratch and become an awesome developer',
-                category: 'other',
-                difficulty: 'advanced',
-                rating: '4.1'
-            }
-        ],
+        courses: [],
         coursesToDisplay: [],
+        categories: [],
         searchValue: ''
     };
 
     componentDidMount() {
-        // 1. api call => response
-        // 2. this.setState(response: courses)
+        // Get courses
+        fetch(`${api}/courses`)
+            .then((result) => result.json())
+            .then((response) => {
+                const fetchedCourses = response.data.courses;
+                const updatedCourses = [];
 
-        // 3. courses to display = courses
-        this.setState({ coursesToDisplay: [...this.state.courses] });
+                fetchedCourses.forEach((course) => {
+                    updatedCourses.push({
+                        id: course._id,
+                        name: course.name,
+                        summary: course.summary,
+                        category: course.category,
+                        difficulty: course.difficulty,
+                        rating: course.rating
+                    });
+                });
+
+                // this.setState({ courses: response })
+                this.setState({ courses: updatedCourses });
+                // Courses to display = courses
+                this.setState({ coursesToDisplay: [...this.state.courses] });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        // Get categories
+        fetch(`${api}/courses/categories`)
+            .then((result) => result.json())
+            .then((response) => {
+                const fetchedCategories = response.data.categories;
+                const updatedCategories = [];
+
+                fetchedCategories.forEach((category) => {
+                    updatedCategories.push(category._id);
+                });
+
+                this.setState({ categories: updatedCategories });
+            });
     }
 
     clearCategoryHandler = () => {
@@ -95,7 +92,7 @@ export class Mainpage extends Component {
     render() {
         const coursesElements = this.state.coursesToDisplay.map((course) => {
             return (
-                <Link to={`/courses/${course.id}`}>
+                <Link to={`/courses/${course.id}`} key={course.id}>
                     <Course
                         name={course.name}
                         summary={course.summary}
@@ -112,6 +109,7 @@ export class Mainpage extends Component {
                 <Sidebar
                     applyFilters={this.applyFiltersHandler}
                     categoryCleared={this.clearCategoryHandler}
+                    categories={this.state.categories}
                 />
                 <div className={styles.Container}>
                     <Searchbar
