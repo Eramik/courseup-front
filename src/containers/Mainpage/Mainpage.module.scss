@@ -1,3 +1,14 @@
 .Mainpage {
-    padding: 2rem;
+    display: flex;
+}
+
+.Container {
+    flex: 1;
+}
+
+.CoursesContainer {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
 }

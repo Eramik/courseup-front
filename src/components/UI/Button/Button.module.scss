@@ -1,0 +1,21 @@
+.Button {
+    min-width: 10rem;
+    border: none;
+    padding: 1rem 1.5rem;
+    background-color: #00ccc4;
+    color: #fff;
+    text-align: center;
+    font-size: 2rem;
+    border-radius: 1rem;
+    transition: all .2s;
+    cursor: pointer;
+
+    .Big {
+        font-size: 3rem;
+    }
+
+    &:hover {
+        background-color: #00a8c9;
+        transform: scale(1.02);
+    }
+}
