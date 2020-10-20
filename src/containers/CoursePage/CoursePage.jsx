@@ -69,21 +69,21 @@ export class CoursePage extends Component {
                             <div className={styles.CourseMaterial}>
                                 <p>
                                     <span role="img" aria-label="text-icon">📃</span>
-                                    Text material ({this.state.course.materials ? 
+                                    Text materials ({this.state.course.materials ? 
                                     this.state.course.materials.texts.length : '0'})
                                 </p>
                             </div>
                             <div className={styles.CourseMaterial}>
                                 <p>
                                     <span role="img" aria-label="video-icon">🎥</span>
-                                    Video material ({this.state.course.materials ? 
+                                    Video materials ({this.state.course.materials ? 
                                     this.state.course.materials.videos.length : '0'})
                                 </p>
                             </div>
                             <div className={styles.CourseMaterial}>
                                 <p>
                                     <span role="img" aria-label="test-icon">📝</span>
-                                    Test material ({this.state.course.materials ? 
+                                    Test materials ({this.state.course.materials ? 
                                     this.state.course.materials.tests.length : '0'})
                                 </p>
                             </div>
@@ -95,7 +95,14 @@ export class CoursePage extends Component {
                         <Link to="/courses">
                             <Button style={{ marginRight: '2rem' }}>Back</Button>
                         </Link>
-                        <Link to={(location) => `${location.pathname}read/1`}>
+                        <Link to={(location) => {
+                            const url = location.pathname;
+                            let readLink; 
+                            if (url[url.length - 1] === '/') readLink = 'read/1';
+                            else readLink = '/read/1';
+
+                            return url + readLink;
+                        }}>
                             <Button>Enroll course</Button>
                         </Link>
                     </div>
