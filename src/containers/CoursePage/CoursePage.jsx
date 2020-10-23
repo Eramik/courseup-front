@@ -105,6 +105,16 @@ export class CoursePage extends Component {
                         }}>
                             <Button>Enroll course</Button>
                         </Link>
+                        <Link to={(location) => {
+                            const url = location.pathname;
+                            let videoLink; 
+                            if (url[url.length - 1] === '/') videoLink = 'video/1';
+                            else videoLink = '/video/1';
+
+                            return url + videoLink;
+                        }}>
+                            <Button>To малолетний гоблино</Button>
+                        </Link>
                     </div>
                 </div>
             </div>
