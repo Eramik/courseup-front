@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './TestPage.module.scss';
 import Button from '../../components/UI/Button/Button';
-import styles from './VideoPage.module.scss';
-import PlayerExample from '../../components/Video/Video';
-import PlayerControlExample from '../Video/Video';
 
 const { REACT_APP_API: api } = process.env;
 
-export class VideoPage extends Component {
+export class TestPage extends Component {
     state = {
-        textMaterials: [],
-        nextVideoMaterialNumber: null,
+        testMaterials: [],
+        nextTestMaterialNumber: null,
         currentNumber: null
     };
 
     componentDidMount() {
-        const { courseId, textNumber } = this.props.match.params;
+        const { courseId, testNumber } = this.props.match.params;
 
         // console.log(this.props.match);
         fetch(`${api}/courses/${courseId}?readPopulate=true`)
@@ -23,12 +21,12 @@ export class VideoPage extends Component {
             .then((response) => {
                 const updatedState = {};
 
-                const fetchedText = response.data.course.materials.texts[textNumber - 1];
-                updatedState.textMaterials = fetchedText.text.split('\\n');
-                updatedState.currentNumber = parseInt(textNumber);
+                const fetchedTest = response.data.course.materials.tests[testNumber - 1];
+                updatedState.testMaterials = fetchedTest.test.split('\\n');
+                updatedState.currentNumber = parseInt(testNumber);
 
-                if (response.data.course.materials.texts.length > textNumber) {
-                    updatedState.nextVideoMaterialNumber = parseInt(textNumber) + 1;
+                if (response.data.course.materials.tests.length > testNumber) {
+                    updatedState.nextTestMaterialNumber = parseInt(testNumber) + 1;
                 }
 
                 this.setState(updatedState);
@@ -43,23 +41,23 @@ export class VideoPage extends Component {
     }
 
     render() {
-        const formattedText = this.state.textMaterials.map((part, i) => <p key={i}>{part}</p>);
+        const formattedTest = this.state.testMaterials.map((part, i) => <p key={i}>{part}</p>);
         let nextButton = (
             <Link to="/">
                 <Button>Go to videos</Button>
             </Link>
         );
         let backButton = (
-            <Link to={this.props.match.url.substring(0, this.props.match.url.indexOf('read'))}>
+            <Link to={this.props.match.url.substring(0, this.props.match.url.indexOf('test'))}>
                 <Button>Back to course page</Button>
             </Link>
         );
-        
-        if (this.state.nextVideoMaterialNumber) {
+
+        if (this.state.nextTestMaterialNumber) {
 
             const redirectLink =
                 this.props.match.url.slice(0, this.props.match.url.lastIndexOf('/') + 1) +
-                this.state.nextVideoMaterialNumber; 
+                this.state.nextTestMaterialNumber; 
 
             nextButton = (
                 <Link
@@ -98,14 +96,13 @@ export class VideoPage extends Component {
         }
 
         return (
-            <div className={styles.VideoPage}>
+            <div className={styles.TestPage}>
                 <div className="center-content">
                     <h2>Lesson {this.state.currentNumber}</h2>
-                    {formattedText}
+                    {formattedTest}
                 </div>
                 <div className="center-content">
                     <div className={styles.Footer}>
-                    <PlayerControlExample />
                         {backButton}
                         {nextButton}
                     </div>
@@ -115,4 +112,4 @@ export class VideoPage extends Component {
     }
 }
 
-export default VideoPage;
+export default TestPage;

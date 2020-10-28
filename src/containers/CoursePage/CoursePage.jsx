@@ -113,7 +113,16 @@ export class CoursePage extends Component {
 
                             return url + videoLink;
                         }}>
-                            <Button>To малолетний гоблино</Button>
+                            <Button>To videos</Button>
+                        </Link>
+                        <Link to={(location) => {
+                            const url = location.pathname;
+                            let testLink; 
+                            if (url[url.length - 1] === '/') testLink = 'test/1';
+                            else testLink = '/test/1';
+                            return url + testLink;
+                        }}>
+                            <Button>To tests</Button>
                         </Link>
                     </div>
                 </div>

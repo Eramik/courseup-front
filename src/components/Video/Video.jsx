@@ -7,7 +7,7 @@ export default class PlayerExample extends Component {
     super(props, context);
 
     this.state = {
-      playerSource: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
+      playerSource: 'http://www.w3schools.com/html/mov_bbb.mp4',
       inputVideoUrl: 'http://www.w3schools.com/html/mov_bbb.mp4'
     };
 
