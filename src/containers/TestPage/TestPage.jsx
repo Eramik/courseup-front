@@ -43,7 +43,7 @@ export class TestPage extends Component {
     render() {
         const formattedTest = this.state.testMaterials.map((part, i) => <p key={i}>{part}</p>);
         let nextButton = (
-            <Link to="/">
+            <Link to="/courses/:courseId/video/:videoNumber">
                 <Button>Go to videos</Button>
             </Link>
         );
@@ -98,7 +98,7 @@ export class TestPage extends Component {
         return (
             <div className={styles.TestPage}>
                 <div className="center-content">
-                    <h2>Lesson {this.state.currentNumber}</h2>
+                    <h2>TEST for Lesson {this.state.currentNumber}</h2>
                     {formattedTest}
                 </div>
                 <div className="center-content">
