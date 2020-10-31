@@ -21,7 +21,7 @@ export class Mainpage extends Component {
         fetch(`${api}/courses`)
             .then((result) => result.json())
             .then((response) => {
-                const fetchedCourses = response.data.courses;
+                const fetchedCourses = response.data.docs;
                 const updatedCourses = [];
 
                 fetchedCourses.forEach((course) => {

@@ -1,70 +1,20 @@
-import React, { Component } from 'react';
-import { Player } from 'video-react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import React from 'react';
+import ReactPlayer from 'react-player';
+import styles from './Video.module.scss';
 
-export default class PlayerExample extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      playerSource: 'http://localhost:4000/api/v1/materials/video/5f95453ef1393e00d4af55ed/stream',
-      inputVideoUrl: 'http://www.w3schools.com/html/mov_bbb.mp4'
-    };
-
-    this.handleValueChange = this.handleValueChange.bind(this);
-    this.updatePlayerInfo = this.updatePlayerInfo.bind(this);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.playerSource !== prevState.playerSource) {
-      this.player.load();
-    }
-  }
-
-  handleValueChange(e) {
-    const { value } = e.target;
-    this.setState({
-      inputVideoUrl: value
-    });
-  }
-
-  updatePlayerInfo() {
-    const { inputVideoUrl } = this.state;
-    this.setState({
-      playerSource: inputVideoUrl
-    });
-  }
-
-  render() {
+const ResponsivePlayer = (props) => {
     return (
-      <div>
-        <Player
-          ref={player => {
-            this.player = player;
-          }}
-          videoId="video-1"
-        >
-          <source src={this.state.playerSource} />
-        </Player>
-        <div className="docs-example">
-          <Form>
-            <FormGroup>
-              <Label for="inputVideoUrl">Video Url</Label>
-              <Input
-                name="inputVideoUrl"
-                id="inputVideoUrl"
-                value={this.state.inputVideoUrl}
-                onChange={this.handleValueChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Button type="button" onClick={this.updatePlayerInfo}>
-                Update
-              </Button>
-            </FormGroup>
-          </Form>
+      <div className={styles.Video}>
+        <div className="player-wrapper">
+          <ReactPlayer
+            className="react-player"
+            url={props.url}
+            width='100%'
+            height='100%'
+            controls={true}
+          />
         </div>
       </div>
-    );
+    )
   }
-}
+export default ResponsivePlayer

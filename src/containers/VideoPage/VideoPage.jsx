@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/UI/Button/Button';
 import styles from './VideoPage.module.scss';
-import PlayerExample from '../../components/Video/Video';
+import ResponsivePlayer from '../../components/Video/Video';
 import PlayerControlExample from '../Video/Video';
 
 const { REACT_APP_API: api } = process.env;
@@ -46,7 +46,7 @@ export class VideoPage extends Component {
         const formattedText = this.state.textMaterials.map((part, i) => <p key={i}>{part}</p>);
         let nextButton = (
             <Link to="/">
-                <Button>Go to videos</Button>
+                <Button>Go to tests</Button>
             </Link>
         );
         let backButton = (
@@ -104,8 +104,8 @@ export class VideoPage extends Component {
                     {formattedText}
                 </div>
                 <div className="center-content">
+                    <ResponsivePlayer url="http://localhost:4000/api/v1/materials/video/5f95453ef1393e00d4af55ed/stream" />
                     <div className={styles.Footer}>
-                    <PlayerControlExample />
                         {backButton}
                         {nextButton}
                     </div>
