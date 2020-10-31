@@ -1,0 +1,22 @@
+.VideoPage {
+    padding: 3rem 0;
+    background-color: #fff;
+    color: #000;
+
+    h2 {
+        text-align: center;
+        font-size: 3.5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    p {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .Footer {
+        padding-top: 4.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}

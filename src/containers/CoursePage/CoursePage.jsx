@@ -20,8 +20,9 @@ export class CoursePage extends Component {
         fetch(`${api}/courses/${courseId}`)
             .then((result) => result.json())
             .then((response) => {
-                const fetchedCourse = response.data.course; 
+                const fetchedCourse = response.data.doc; 
                 this.setState({ course: fetchedCourse });
+
             })
             .catch((error) => {
                 console.log(error);
