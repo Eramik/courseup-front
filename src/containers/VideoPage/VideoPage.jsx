@@ -18,10 +18,33 @@ export class VideoPage extends Component {
         const { courseId, textNumber } = this.props.match.params;
 
         // console.log(this.props.match);
-        fetch(`${api}/courses/${courseId}?readPopulate=true`)
+        fetch(`${api}/courses/${courseId}?videosPopulate=true`)
             .then((result) => result.json())
             .then((response) => {
                 const updatedState = {};
+                
+                /*
+                    // for viewsing
+                    console.log(response);
+
+                    // get video id
+                    response.data.doc.materials.videos => [
+                        {
+                        _id: videoId*
+                        }
+                    ]
+
+                    // set to updatedState
+                    updatedState.videoId = videoId* 
+
+                    // use this for url
+                    this.state.videoId
+
+                    // pass videoId for streaming
+                    if (this.state.videoId) {
+                        responsive player url => `http://localhost:4000/api/v1/materials/video/${this.state.videoId}/stream`
+                    }
+                */
 
                 const fetchedText = response.data.course.materials.texts[textNumber - 1];
                 updatedState.textMaterials = fetchedText.text.split('\\n');
