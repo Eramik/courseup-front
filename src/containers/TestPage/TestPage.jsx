@@ -7,29 +7,19 @@ const { REACT_APP_API: api } = process.env;
 
 export class TestPage extends Component {
     state = {
-        testMaterials: [],
-        nextTestMaterialNumber: null,
-        currentNumber: null
+        testMaterials: []
     };
 
     componentDidMount() {
-        const { courseId, testNumber } = this.props.match.params;
+        const { courseId } = this.props.match.params;
 
-        fetch(`${api}/courses/${courseId}?testPopulate=true`)
+        fetch(`${api}/courses/${courseId}?testsPopulate=true`)
             .then((result) => result.json())
             .then((response) => {
                 console.log(response);
-                const updatedState = {};
+                const fetchedTestMaterials = response.data.doc.materials.tests[0].questions;
 
-                const fetchedTest = response.data.doc.materials.tests[testNumber - 1];
-                updatedState.testMaterials = fetchedTest.test.split('\\n');
-                updatedState.currentNumber = parseInt(testNumber);
-
-                if (response.data.course.materials.tests.length > testNumber) {
-                    updatedState.nextTestMaterialNumber = parseInt(testNumber) + 1;
-                }
-
-                this.setState(updatedState);
+                this.setState({ testMaterials: fetchedTestMaterials });
             })
             .catch((error) => {
                 console.log(error);
@@ -41,7 +31,6 @@ export class TestPage extends Component {
     }
 
     render() {
-        const formattedTest = this.state.testMaterials.map((part, i) => <p key={i}>{part}</p>);
         let nextButton = (
             <Link to="/courses/:courseId/video/:videoNumber">
                 <Button>Go to videos</Button>
@@ -53,53 +42,60 @@ export class TestPage extends Component {
             </Link>
         );
 
-        if (this.state.nextTestMaterialNumber) {
+        let questions = null;
+        if (this.state.testMaterials.length > 0) {
+            questions = this.state.testMaterials.map((question, questionIndex) => {
+                let renderedVariants = null;
 
-            const redirectLink =
-                this.props.match.url.slice(0, this.props.match.url.lastIndexOf('/') + 1) +
-                this.state.nextTestMaterialNumber; 
+                if (question.type !== 'input') {
+                    renderedVariants = question.variants.map((variant, variantIndex) => {
+                        const name = `variant-${questionIndex}-${variantIndex}`;
+                        if (question.type === 'radio') {
+                            return (
+                                <div>
+                                    <input
+                                        className={styles.input}
+                                        type="radio"
+                                        name={name}
+                                        value={variant}
+                                    />
+                                    <label for={name}>{variant}</label>
+                                </div>
+                            );
+                        } else if (question.type === 'checkbox') {
+                            return (
+                                <div>
+                                    <input
+                                        className={styles.input}
+                                        type="checkbox"
+                                        name={name}
+                                        value={variant}
+                                    />
+                                    <label for={name}>{variant}</label>
+                                </div>
+                            );
+                        }
+                    });
+                } else {
+                    renderedVariants = <input type="text" placeholder="Enter your answer" />;
+                }
 
-            nextButton = (
-                <Link
-                    to={redirectLink}
-                    onClick={() => {
-                        setTimeout(() => {
-                            window.location.reload()
-                        }, 200); 
-                    }}
-                >
-                    <Button>Next</Button>
-                </Link>
-            );
-        }
-
-        if (this.state.currentNumber !== 1) {
-
-            const redirectLink =
-                this.props.match.url.slice(0, this.props.match.url.lastIndexOf('/') + 1) +
-                (this.state.currentNumber - 1);
-
-            console.log(redirectLink);
-
-            backButton = (
-                <Link
-                    to={redirectLink}
-                    onClick={() => {
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 200);
-                    }}
-                >
-                    <Button>Previous</Button>
-                </Link>
-            );
+                return (
+                    <div className={styles.Question} data-id={question._id}>
+                        <h3>{questionIndex + 1}. {question.question}</h3>
+                        {renderedVariants}
+                    </div>
+                );
+            });
         }
 
         return (
             <div className={styles.TestPage}>
                 <div className="center-content">
                     <h2>Test {this.state.currentNumber}</h2>
-                    {formattedTest}
+                    <div className={styles.QuestionsContainer}>
+                        {questions}
+                    </div>
                 </div>
                 <div className="center-content">
                     <div className={styles.Footer}>
