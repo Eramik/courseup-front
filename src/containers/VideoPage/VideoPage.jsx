@@ -20,6 +20,7 @@ export class VideoPage extends Component {
         fetch(`${api}/courses/${courseId}?videosPopulate=true`)
             .then((result) => result.json())
             .then((response) => {
+                console.log(response);
                 const updatedState = {};
                 
                 const video = response.data.doc.materials.videos[0];

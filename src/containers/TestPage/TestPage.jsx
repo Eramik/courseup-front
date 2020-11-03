@@ -15,13 +15,13 @@ export class TestPage extends Component {
     componentDidMount() {
         const { courseId, testNumber } = this.props.match.params;
 
-        // console.log(this.props.match);
-        fetch(`${api}/courses/${courseId}?readPopulate=true`)
+        fetch(`${api}/courses/${courseId}?testPopulate=true`)
             .then((result) => result.json())
             .then((response) => {
+                console.log(response);
                 const updatedState = {};
 
-                const fetchedTest = response.data.course.materials.tests[testNumber - 1];
+                const fetchedTest = response.data.doc.materials.tests[testNumber - 1];
                 updatedState.testMaterials = fetchedTest.test.split('\\n');
                 updatedState.currentNumber = parseInt(testNumber);
 
@@ -98,7 +98,7 @@ export class TestPage extends Component {
         return (
             <div className={styles.TestPage}>
                 <div className="center-content">
-                    <h2>TEST for Lesson {this.state.currentNumber}</h2>
+                    <h2>Test {this.state.currentNumber}</h2>
                     {formattedTest}
                 </div>
                 <div className="center-content">
