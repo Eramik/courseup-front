@@ -20,7 +20,7 @@ export class CoursePage extends Component {
         fetch(`${api}/courses/${courseId}`)
             .then((result) => result.json())
             .then((response) => {
-                const fetchedCourse = response.data.course; 
+                const fetchedCourse = response.data.doc; 
                 this.setState({ course: fetchedCourse });
             })
             .catch((error) => {
@@ -104,6 +104,25 @@ export class CoursePage extends Component {
                             return url + readLink;
                         }}>
                             <Button>Enroll course</Button>
+                        </Link>
+                        <Link to={(location) => {
+                            const url = location.pathname;
+                            let videoLink; 
+                            if (url[url.length - 1] === '/') videoLink = 'video/1';
+                            else videoLink = '/video/1';
+
+                            return url + videoLink;
+                        }}>
+                            <Button>To videos</Button>
+                        </Link>
+                        <Link to={(location) => {
+                            const url = location.pathname;
+                            let testLink; 
+                            if (url[url.length - 1] === '/') testLink = 'test/1';
+                            else testLink = '/test/1';
+                            return url + testLink;
+                        }}>
+                            <Button>To tests</Button>
                         </Link>
                     </div>
                 </div>

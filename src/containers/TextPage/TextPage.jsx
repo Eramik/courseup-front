@@ -43,7 +43,7 @@ export class TextPage extends Component {
     render() {
         const formattedText = this.state.textMaterials.map((part, i) => <p key={i}>{part}</p>);
         let nextButton = (
-            <Link to="/">
+            <Link to="/courses/:courseId/video/:videoNumber">
                 <Button>Go to videos</Button>
             </Link>
         );
