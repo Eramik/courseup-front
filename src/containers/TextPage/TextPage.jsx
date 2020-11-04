@@ -16,16 +16,16 @@ export class TextPage extends Component {
         const { courseId, textNumber } = this.props.match.params;
 
         // console.log(this.props.match);
-        fetch(`${api}/courses/${courseId}?readPopulate=true`)
+        fetch(`${api}/courses/${courseId}?textPopulate=true`)
             .then((result) => result.json())
             .then((response) => {
                 const updatedState = {};
 
-                const fetchedText = response.data.course.materials.texts[textNumber - 1];
+                const fetchedText = response.data.doc.materials.texts[textNumber - 1];
                 updatedState.textMaterials = fetchedText.text.split('\\n');
                 updatedState.currentNumber = parseInt(textNumber);
 
-                if (response.data.course.materials.texts.length > textNumber) {
+                if (response.data.doc.materials.texts.length > textNumber) {
                     updatedState.nextTextMaterialNumber = parseInt(textNumber) + 1;
                 }
 
@@ -42,13 +42,18 @@ export class TextPage extends Component {
 
     render() {
         const formattedText = this.state.textMaterials.map((part, i) => <p key={i}>{part}</p>);
+        
+        const videoUrl = `/courses/${this.props.match.params.courseId}/video/1`;
+        const courseUrl = this.props.match.url.substring(0, this.props.match.url.indexOf('read')); 
+
         let nextButton = (
-            <Link to="/courses/:courseId/video/:videoNumber">
+            <Link to={videoUrl}>
                 <Button>Go to videos</Button>
             </Link>
         );
+
         let backButton = (
-            <Link to={this.props.match.url.substring(0, this.props.match.url.indexOf('read'))}>
+            <Link to={courseUrl}>
                 <Button>Back to course page</Button>
             </Link>
         );

@@ -16,7 +16,6 @@ export class VideoPage extends Component {
     componentDidMount() {
         const { courseId } = this.props.match.params;
 
-        // console.log(this.props.match);
         fetch(`${api}/courses/${courseId}?videosPopulate=true`)
             .then((result) => result.json())
             .then((response) => {
@@ -34,18 +33,18 @@ export class VideoPage extends Component {
     }
 
     render() {
-        const backToCourseUrl = this.props.match.url
-            .substring(0, this.props.match.url.indexOf('video')); 
+        const testsUrl = `/courses/${this.props.match.params.courseId}/test/1`;
+        const videoUrl = `/courses/${this.props.match.params.courseId}/read/1`;
 
         let nextButton = (
-            <Link to="/">
+            <Link to={testsUrl}>
                 <Button>Go to tests</Button>
             </Link>
         );
 
         let backButton = (
-            <Link to={backToCourseUrl}>
-                <Button>Back to course page</Button>
+            <Link to={videoUrl}>
+                <Button>Back to text materials</Button>
             </Link>
         );
         
