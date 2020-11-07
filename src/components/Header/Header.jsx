@@ -11,7 +11,9 @@ const Header = (props) => {
                 <img src={HeaderLogo} alt="logo" className={styles.HeaderImg}></img>
             </NavLink>
             <div className={styles.AuthSection}>
-                <Button>Sign up</Button>
+                <NavLink to="/signUp">
+                    <Button>Sign up</Button>
+                </NavLink>
             </div>
         </header>
     );
