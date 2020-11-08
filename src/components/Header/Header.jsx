@@ -10,6 +10,11 @@ const Header = (props) => {
             <NavLink to="/" className={styles.HeaderImage}>
                 <img src={HeaderLogo} alt="logo" className={styles.HeaderImg}></img>
             </NavLink>
+            <NavLink to="/profile">
+                <div className={styles.AuthSection}>
+                    <Button>Profile</Button>
+                </div>
+            </NavLink>
             <div className={styles.AuthSection}>
                 <Button>Sign up</Button>
             </div>
