@@ -23,7 +23,6 @@ class App extends Component {
                     <Route path="/courses/:courseId/read/:textNumber" component={TextPage} />
                     <Route path="/courses/:courseId/video/:videoNumber" component={VideoPage} />
                     <Route path="/courses/:courseId/test/:testNumber" component={TestPage} />
-                    <Route path="/Happy_birthday" component={Happy_birthday} />
                 </Switch>
                 <Footer />
             </div>
