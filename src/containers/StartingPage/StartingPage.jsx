@@ -29,6 +29,7 @@ export class StartingPage extends Component {
                 <section className={styles.InitialSection}>
                     <div className={styles.InfoCentered}>
                         <h1>CourseUp - your path to success!</h1>
+                        <Happy_birthday></Happy_birthday>
                         <NavLink to="/courses">
                             <Button>Go to courses</Button>
                         </NavLink>
