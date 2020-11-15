@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './SignUpPage.scss';
 import Login from '../../components/Login/Login';
 import Register from '../../components/Register/Register';

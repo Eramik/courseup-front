@@ -25,17 +25,33 @@ export class Register extends React.Component {
     this.setState({password: event.target.value})
   }
 
-  /* handleSubmit = () => {
-    let {username,email,password} = this.state;
-    fetch('http://localhost:3000/signup', {
-      method: 'post',
-      body: email, password, username
-      returns: {
-        token,
-        data: { userData }
-      }
-    })
-  } */
+  handleSubmit = async () => {
+    const { username, email, password} = this.state;
+
+    const authData = {
+        username,
+        email,
+        password
+    };
+
+    console.log(authData);
+
+    try {
+        const rawResponse = await fetch('http://localhost:4000/api/v1/users/signup', {
+          method: 'post',
+          body: JSON.stringify(authData),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const response = await rawResponse.json();
+
+        // Got token and user, save it to redux (and cookies)
+
+    } catch (e) {
+        console.log(e.message);
+    }
+  }
 
   render() {
     return (
@@ -48,20 +64,20 @@ export class Register extends React.Component {
           <div className="form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" value = {this.state.username} />
+              <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleUsernameChange} />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="email" value = {this.state.email} />
+              <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleEmailChange} />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="text" name="password" placeholder="password" value = {this.state.password} />
+              <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange} />
             </div>
           </div>
         </div>
         <div className="footer">
-            <Button>
+            <Button clicked={this.handleSubmit}>
                 Register
             </Button>
         </div>
