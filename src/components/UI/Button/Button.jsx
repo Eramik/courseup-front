@@ -6,7 +6,7 @@ const Button = (props) => (
     <button
         style={{ ...props.style }}
         className={clsx(styles.Button, { [styles.Big]: props.big })}
-        {...props}
+        onClick={() => props.clicked()}
     >
         {props.children}
     </button>
