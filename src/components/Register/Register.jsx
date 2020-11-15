@@ -2,6 +2,8 @@ import React from "react";
 import styles from './Register.scss'; 
 import loginImg from "../../login.svg";
 import Button from '../UI/Button/Button';
+import * as actions from '../../store/actions';
+import { connect } from 'react-redux';
 
 export class Register extends React.Component {
   constructor(props){
@@ -46,14 +48,21 @@ export class Register extends React.Component {
         });
         const response = await rawResponse.json();
 
-        // Got token and user, save it to redux (and cookies)
+        const { token, data: { user }} = response;
 
+        // Got token and user, save it to redux (and cookies)
+        this.props.authSuccess(token, user);
+
+        // Save it to cookies, localStorage whatever
     } catch (e) {
         console.log(e.message);
     }
   }
 
   render() {
+
+    console.log(this.props.state);
+
     return (
         <div className="base-container" ref={this.props.containerRef}>
         <div className="header">Register</div>
@@ -77,7 +86,7 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
-            <Button clicked={this.handleSubmit}>
+            <Button onClick={() => this.handleSubmit()}>
                 Register
             </Button>
         </div>
@@ -86,4 +95,18 @@ export class Register extends React.Component {
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+    return {
+        state
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        authStart: () => dispatch(actions.authStart()),
+        authSuccess: (token, user) => dispatch(actions.authSuccess(token, user)),
+        authFail: () => dispatch(actions.authFail())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
