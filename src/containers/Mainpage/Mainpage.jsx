@@ -35,9 +35,7 @@ export class Mainpage extends Component {
                     });
                 });
 
-                // this.setState({ courses: response })
                 this.setState({ courses: updatedCourses });
-                // Courses to display = courses
                 this.setState({ coursesToDisplay: [...this.state.courses] });
             })
             .catch((error) => {

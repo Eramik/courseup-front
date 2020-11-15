@@ -19,4 +19,42 @@
         display: flex;
         justify-content: space-between;
     }
+
+    .QuestionsContainer {
+        margin: 1rem 0;
+        border: 1px solid #212121;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+
+    .Question {
+        font-size: 2rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+
+        .input {
+            margin-right: 1.5rem;
+        }
+
+        .inputText {
+            font: inherit;
+            border: 1px solid #212121;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .ResultsContainer {
+        margin: 3rem 0;
+        text-align: center;
+
+        .results {
+            margin: 2rem 0;
+        }
+    }
 }
