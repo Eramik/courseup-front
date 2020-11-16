@@ -5,9 +5,9 @@ import './ProfilePage.scss';
 import Button from '../../components/UI/Button/Button';
 import DefaultUserPic from '../../img/DefaultUserLogo.png';
 import { NavLink } from 'react-router-dom';
-import {connect} from 'react-redux';
+/*import {connect} from 'react-redux';
 
-const axios = require('axios');
+const axios = require('axios');*/
 
 class ProfilePage extends React.Component {
     constructor(props){
@@ -121,6 +121,6 @@ const mapStatetoProps=(state)=>{
     }
    }
 
-export default connect(mapStatetoProps)(ProfilePage);
+//export default connect(mapStatetoProps)(ProfilePage);
 
-//export default ProfilePage;
+export default ProfilePage;
