@@ -9,6 +9,7 @@ import VideoPage from './containers/VideoPage/VideoPage';
 import CoursePage from './containers/CoursePage/CoursePage';
 import TestPage from './containers/TestPage/TestPage';
 import SignUpPage from './containers/SignUpPage/SignUpPage';
+import ProfilePage from './containers/ProfilePage/ProfilePage';
 
 class App extends Component {
     render() {
@@ -19,6 +20,7 @@ class App extends Component {
                     <Route path="/" exact component={StartingPage} />
                     <Route path="/courses" exact component={Mainpage} />
                     <Route path="/courses/:courseId" exact component={CoursePage} /> 
+                    <Route path="/profile" exact component={ProfilePage} /> 
                     <Route path="/signUp" exact component={SignUpPage} /> 
                     <Route path="/courses/:courseId/read/:textNumber" component={TextPage} />
                     <Route path="/courses/:courseId/video/:videoNumber" component={VideoPage} />
