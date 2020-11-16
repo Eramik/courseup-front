@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Register.scss'; 
+import './Register.scss'; 
 import loginImg from "../../login.svg";
 import Button from '../UI/Button/Button';
 import * as actions from '../../store/actions';
@@ -73,15 +73,18 @@ export class Register extends React.Component {
           <div className="form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleUsernameChange} />
+              <input type="text" name="username" placeholder="username" 
+              value={this.state.username} onChange={this.handleUsernameChange} />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleEmailChange} />
+              <input type="text" name="email" placeholder="email" 
+              value={this.state.email} onChange={this.handleEmailChange} />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="text" name="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange} />
+              <input type="text" name="password" placeholder="password" 
+              value={this.state.password} onChange={this.handlePasswordChange} />
             </div>
           </div>
         </div>
