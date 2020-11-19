@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Button from '../Button/Button.jsx';
+import ButtonSpecial from '../ButtonSpecial/ButtonSpecial.jsx';
 import Star from '../Star/Star.jsx';
-import './Form.scss';
 
 class Form extends Component {
     constructor()
@@ -37,14 +36,14 @@ class Form extends Component {
                     </div>
 
                     <input type="hidden" name="rating" value={this.state.rating}/>
-                    <input type="text" value={this.state.name} name="name" placeholder="Naam"
+                    <input type="text" value={this.state.name} name="name" placeholder="Имя"
                            onChange={this.handleInputChange}/>
 
-                    <textarea name="review" value={this.state.review} placeholder="Plaats hier je Review"
+                    <textarea name="review" value={this.state.review} placeholder="Введите текст"
                               onChange={this.handleInputChange}/>
 
                     <button className="button">
-                        Review plaatsen
+                        Опубликовать
                     </button>
                 </form>
 
@@ -61,7 +60,7 @@ class Form extends Component {
 
     showButton()
     {
-        return <Button isActive={this.state.isActive} showForm={() => this.showForm()}/>;
+        return <ButtonSpecial isActive={this.state.isActive} showForm={() => this.showForm()}/>;
     }
 
     getStar(rating)

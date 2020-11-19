@@ -1,15 +1,7 @@
-.rating {
-	&__prefix {
-		position: relative;
-		top: -7px;
-
-		margin-right: 10px;
-    }
-}
 /*
  * Container & List
  */
-/* .reviews {
+.reviews {
 	&__list {
 		margin: 0;
 	}
@@ -29,7 +21,15 @@
 .review {
 	position: relative;
 
-	
+	&__date {
+		@include font-size(xsmall);
+		@include line-height(small);
+
+		display: block;
+
+		color: $medium-gray;
+	}
+
 	&__rating {
 		position: absolute;
 		top: 0;
@@ -37,16 +37,8 @@
 	}
 
 	&__content {
+		@include line-margin(.5, 0);
 
 		white-space: pre-line;
 	}
-}
-.validation {
-	margin-bottom: 10px;
-	padding: 4px 15px;
-
-	border-radius: 3px;
-	background-color: $alert-color;
-
-	color: $white;
 }

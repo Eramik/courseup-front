@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Review from '../Review/Review.jsx';
-import './List.scss';
 
 class List extends Component {
     render()
