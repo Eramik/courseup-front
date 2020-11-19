@@ -41,7 +41,7 @@ class Review extends Component {
         if (typeof date === 'object') {
             return (
                 <span className="review__date">
-                    Geplaatst op: {date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear()}
+                    Posted: {date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear()}
                 </span>
             );
         }

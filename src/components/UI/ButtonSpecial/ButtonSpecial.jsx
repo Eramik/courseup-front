@@ -5,7 +5,7 @@ class ButtonSpecial extends Component {
     {
         return (
             <button id="toggle" className={this.props.isActive ? 'button hide' : 'button'} onClick={this.props.showForm}>
-                Оставьте отзыв
+                Leave a review
             </button>
         );
     }

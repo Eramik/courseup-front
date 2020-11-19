@@ -27,7 +27,7 @@ class Form extends Component {
 
                     {this.props.validation}
                     <div className="rating">
-                        <span className="rating__prefix font-size-small">Beoordeling</span>
+                        <span className="rating__prefix font-size-small">Review</span>
                         {this.getStar(1)}
                         {this.getStar(2)}
                         {this.getStar(3)}
@@ -36,14 +36,14 @@ class Form extends Component {
                     </div>
 
                     <input type="hidden" name="rating" value={this.state.rating}/>
-                    <input type="text" value={this.state.name} name="name" placeholder="Имя"
+                    <input type="text" value={this.state.name} name="name" placeholder="Name"
                            onChange={this.handleInputChange}/>
 
-                    <textarea name="review" value={this.state.review} placeholder="Введите текст"
+                    <textarea name="review" value={this.state.review} placeholder="Enter text"
                               onChange={this.handleInputChange}/>
 
                     <button className="button">
-                        Опубликовать
+                        Publish
                     </button>
                 </form>
 
