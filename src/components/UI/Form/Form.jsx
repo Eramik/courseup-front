@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from '../Button/Button.jsx';
 import Star from '../Star/Star.jsx';
+import './Form.scss';
 
 class Form extends Component {
     constructor()

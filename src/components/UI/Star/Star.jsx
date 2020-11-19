@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Star.scss';
 
 class Star extends Component {
     render()

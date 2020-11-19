@@ -1,0 +1,52 @@
+.rating {
+	&__prefix {
+		position: relative;
+		top: -7px;
+
+		margin-right: 10px;
+    }
+}
+/*
+ * Container & List
+ */
+/* .reviews {
+	&__list {
+		margin: 0;
+	}
+
+	&__list-item {
+		border-top: 1px solid $light-gray;
+
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
+}
+
+/*
+ * Single review
+ */
+.review {
+	position: relative;
+
+	
+	&__rating {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	&__content {
+
+		white-space: pre-line;
+	}
+}
+.validation {
+	margin-bottom: 10px;
+	padding: 4px 15px;
+
+	border-radius: 3px;
+	background-color: $alert-color;
+
+	color: $white;
+}
