@@ -20,6 +20,11 @@ const Header = (props) => {
                     <Button>Sign up</Button>
                 </NavLink>
             </div>
+            <div className={styles.AuthSection}>
+                <NavLink to="/courses/:courseId/review">
+                    <Button>Test</Button>
+                </NavLink>
+            </div>
         </header>
     );
 }

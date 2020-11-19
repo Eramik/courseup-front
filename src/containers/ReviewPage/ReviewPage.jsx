@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import List from './components/List.js';
-import Form from './components/Form.js';
-import './css/style.min.css';
+import List from '../../components/UI/List/List.jsx';
+import Form from '../../components/UI/Form/Form.jsx';
+import './ReviewPage.scss';
 
 class ReviewPage extends Component {
     constructor()
