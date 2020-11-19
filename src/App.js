@@ -10,6 +10,8 @@ import CoursePage from './containers/CoursePage/CoursePage';
 import TestPage from './containers/TestPage/TestPage';
 import SignUpPage from './containers/SignUpPage/SignUpPage';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
+import ReviewPage from './containers/ReviewPage/ReviewPage';
+
 
 class App extends Component {
     render() {
@@ -25,6 +27,7 @@ class App extends Component {
                     <Route path="/courses/:courseId/read/:textNumber" component={TextPage} />
                     <Route path="/courses/:courseId/video/:videoNumber" component={VideoPage} />
                     <Route path="/courses/:courseId/test/:testNumber" component={TestPage} />
+                    <Route path="/courses/:courseId/review" component={ReviewPage} />
                 </Switch>
                 <Footer />
             </div>

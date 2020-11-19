@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Review from './Review.js';
+import Review from '../Review/Review.jsx';
 
 class List extends Component {
     render()
