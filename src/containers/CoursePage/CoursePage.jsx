@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 
@@ -96,12 +97,18 @@ export class CoursePage extends Component {
                             <Button style={{ marginRight: '2rem' }}>Back</Button>
                         </Link>
                         <Link to={(location) => {
-                            const url = location.pathname;
-                            let readLink; 
-                            if (url[url.length - 1] === '/') readLink = 'read/1';
-                            else readLink = '/read/1';
+                            let url = location.pathname;
+                            let link; 
 
-                            return url + readLink;
+                            if (this.props.token) {
+                                if (url[url.length - 1] === '/') link = 'read/1';
+                                else link = '/read/1';
+                            } else {
+                                link = '/signUp';
+                                url = url.substr(0, url.indexOf('/'));
+                            }
+
+                            return url + link;
                         }}>
                             <Button>Enroll course</Button>
                         </Link>
@@ -112,4 +119,10 @@ export class CoursePage extends Component {
     }
 }
 
-export default CoursePage
+const mapStateToProps = (state) => {
+    return {
+        token: state.token
+    };
+};
+
+export default connect(mapStateToProps)(CoursePage);
