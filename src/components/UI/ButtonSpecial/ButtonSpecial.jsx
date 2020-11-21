@@ -4,9 +4,7 @@ class ButtonSpecial extends Component {
     render()
     {
         return (
-            <button id="toggle" className={this.props.isActive ? 'button hide' : 'button'} onClick={this.props.showForm}>
-                Leave a review
-            </button>
+            <button id="toggle" className={this.props.isActive ? 'button hide' : 'button'} onClick={this.props.showForm}>➕</button>
         );
     }
 }
