@@ -3,23 +3,25 @@ import ForumList from '../../components/UI/ForumList/ForumList.jsx';
 import ForumForm from '../../components/UI/ForumForm/ForumForm.jsx';
 import '../../css/style.min.css';
 
-
 class ForumPage extends Component {
     constructor()
     {   
         super();
 
         this.state = {
-
             topics: [
                 {
-                    nameTopic: 'Midd Spicer',
-                    topic: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+                    title: 'Midd Spicer',
+                    course: 'test',
+                    author: 'test',
+                    body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
                 },
                 {
-                    courseTopic: '',
-                    nameTopic: 'Ron Morris',
-                    topic: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    title: 'Ron Morris',
+                    course: 'test',
+                    author: 'test',
+                    body:
+                        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                 }
             ],
             validation: ''
@@ -28,47 +30,36 @@ class ForumPage extends Component {
         this.submitForm = this.submitForm.bind(this);
     }
 
-    render()
-    {
+    render() {
         return (
             <div className="bg-light-gray global-padding-bottom">
                 <section className="reviews">
-
                         <div className="area align-center text-center row">
                             <h1 className="small-12 medium-6 columns">
                                 <br />
                                 <br />
                             </h1>
                         </div>
-                   
-
                     <div className="row align-center content-margin-top-negative">
                         <div className="small-12 medium-8 large-6 columns">
                             <div className="content-padding bg-white area">
-
-                                
                                 {this.renderList()}
                             </div>
                             {this.renderForm()}
                         </div>
                     </div>
-
-
                 </section>
             </div>
-
         );
     }
 
-    renderList()
-    {
+    renderList() {
         return <ForumList topics={this.state.topics}/>;
     }
 
-    renderForm()
-    {
+    renderForm() {
         return <ForumForm submitForm={this.submitForm} validation={this.state.validation}/>;
-    } 
+    }
 
     submitForm(event)
     {

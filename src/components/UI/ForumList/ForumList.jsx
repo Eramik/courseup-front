@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import TopicReview from '../TopicReview/TopicReview.jsx';
 
-class ForumList extends Component {
-    render()
-    {
-        return (
-            <ul className="reviews__list">
-                {this.props.reviews.sort((a,b) => b.date - a.date).map((review, index) => <TopicReview index={index} review={review}/>)}
-            </ul>
-        );
-    }
-}
+const ForumList = (props) => {
+    return (
+        <ul className="reviews__list">
+            {props.topics
+                .sort((a, b) => b.date - a.date)
+                .map((topic, index) => (
+                    <TopicReview index={index} topic={topic} />
+                ))}
+        </ul>
+    );
+};
 
 export default ForumList;

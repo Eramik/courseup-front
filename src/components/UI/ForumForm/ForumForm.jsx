@@ -20,17 +20,12 @@ class ForumForm extends Component {
     {
         return (
             <div className="review-form bg-white content-padding block-margin-top">
-
                 <form className={this.state.isActive ? '' : 'hide'} onSubmit={this.props.submitForm}>
-
                     {this.props.validation}
-
                     <input type="text" value={this.state.name} name="name" placeholder="Name"
                            onChange={this.handleInputChange}/>
-
                     <textarea name="review" value={this.state.review} placeholder="Enter text"
                               onChange={this.handleInputChange}/>
-
                     <button className="button">
                         Post
                     </button>
