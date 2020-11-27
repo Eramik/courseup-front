@@ -12,6 +12,7 @@ import SignUpPage from './containers/SignUpPage/SignUpPage';
 import ProfilePage from './containers/ProfilePage/ProfilePage';
 import ReviewPage from './containers/ReviewPage/ReviewPage';
 import TopicPage from './containers/TopicPage/TopicPage';
+import ForumPage from './containers/ForumPage/ForumPage';
 
 
 class App extends Component {
@@ -29,7 +30,8 @@ class App extends Component {
                     <Route path="/courses/:courseId/video/:videoNumber" component={VideoPage} />
                     <Route path="/courses/:courseId/test/:testNumber" component={TestPage} />
                     <Route path="/courses/:courseId/review" component={ReviewPage} />
-                    <Route path="/courses/:courseId/topic" component={TopicPage} />
+                    <Route path="/forum" component={ForumPage} />
+                    <Route path="/courses/forum/:courseId/topic" component={TopicPage} />
                 </Switch>
                 <Footer />
             </div>

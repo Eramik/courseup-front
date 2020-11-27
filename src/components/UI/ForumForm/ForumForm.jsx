@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import ButtonSpecial from '../ButtonSpecial/ButtonSpecial.jsx';
-import Star from '../Star/Star.jsx';
 
-class Form extends Component {
+class ForumForm extends Component {
     constructor()
     {
         super();
@@ -10,8 +9,7 @@ class Form extends Component {
         this.state = {
             isActive: false,
             isSubmitted: false,
-            rating: 1,
-            name: '',       
+            name: '',
             review: '',
         };
 
@@ -26,16 +24,7 @@ class Form extends Component {
                 <form className={this.state.isActive ? '' : 'hide'} onSubmit={this.props.submitForm}>
 
                     {this.props.validation}
-                    <div className="rating">
-                        <span className="rating__prefix font-size-small">Review</span>
-                        {this.getStar(1)}
-                        {this.getStar(2)}
-                        {this.getStar(3)}
-                        {this.getStar(4)}
-                        {this.getStar(5)}
-                    </div>
 
-                    <input type="hidden" name="rating" value={this.state.rating}/>
                     <input type="text" value={this.state.name} name="name" placeholder="Name"
                            onChange={this.handleInputChange}/>
 
@@ -43,7 +32,7 @@ class Form extends Component {
                               onChange={this.handleInputChange}/>
 
                     <button className="button">
-                        Publish
+                        Post
                     </button>
                 </form>
 
@@ -63,20 +52,6 @@ class Form extends Component {
         return <ButtonSpecial isActive={this.state.isActive} showForm={() => this.showForm()}/>;
     }
 
-    getStar(rating)
-    {
-        return <Star
-            rating={rating}
-            isActive={this.state.rating === rating}
-            onClick={() => this.clickOnStar(rating)}
-        />;
-    }
-
-    clickOnStar(rating)
-    {
-        this.setState({...this.state, rating: rating});
-    }
-
     handleInputChange(event)
     {
         const target = event.target;
@@ -87,4 +62,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default ForumForm;

@@ -26,8 +26,8 @@ const Header = (props) => {
                 </NavLink>
             </div>
             <div className={styles.AuthSection}>
-                <NavLink to="/courses/:courseId/topic">
-                    <Button>Topic</Button>
+                <NavLink to="/forum">
+                    <Button>Forum</Button>
                 </NavLink>
             </div>
         </header>
