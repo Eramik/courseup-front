@@ -17,6 +17,8 @@ class ForumPage extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
+
         fetch('http://localhost:4000/api/v1/forum/topic', {
             method: 'get',
             headers: {
@@ -96,7 +98,7 @@ class ForumPage extends Component {
         fetch('http://localhost:4000/api/v1/forum/topic', {
             method: 'post',
             body: JSON.stringify({
-                userId: '5fb7067961bc7b19dcc2a1dd',
+                userId: this.props.user._id,
                 courseId,
                 title: topicTitle,
                 body: topicBody
@@ -108,7 +110,9 @@ class ForumPage extends Component {
         })
             .then((res) => res.json())
             .then((results) => {
-                console.log(results);
+                if (results.status === 'success') {
+                    window.location.reload();
+                }
             })
             .catch((e) => {
                 console.log(e.messsage);

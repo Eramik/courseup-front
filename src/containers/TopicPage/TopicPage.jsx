@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopicList from '../../components/Topic/TopicList/TopicList.jsx';
 import TopicForm from '../../components/Topic/TopicForm/TopicForm.jsx';
 import '../../css/style.min.css';
+import { connect } from 'react-redux';
 
 class TopicPage extends Component {
     constructor(props) {
@@ -94,7 +95,7 @@ class TopicPage extends Component {
         fetch('http://localhost:4000/api/v1/forum/reply', {
             method: 'post',
             body: JSON.stringify({
-                userId: '5fb7067961bc7b19dcc2a1dd',
+                userId: this.props.user._id,
                 topicId: this.state.topic.id,
                 body: reply
             }),
@@ -105,7 +106,9 @@ class TopicPage extends Component {
         })
             .then((res) => res.json())
             .then((results) => {
-                console.log(results);
+                if (results.status === 'success') {
+                    window.location.reload();
+                }
             })
             .catch((e) => {
                 console.log(e.messsage);
@@ -113,4 +116,9 @@ class TopicPage extends Component {
     }
 }
 
-export default TopicPage;
+const mapStateToProps = (state) => ({
+    token: state.token,
+    user: state.userData
+});
+
+export default connect(mapStateToProps)(TopicPage);
