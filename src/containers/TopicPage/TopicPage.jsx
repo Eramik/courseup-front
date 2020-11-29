@@ -1,117 +1,116 @@
-import React, {Component} from 'react';
-import TopicList from '../../components/UI/TopicList/TopicList.jsx';
-import TopicForm from '../../components/UI/TopicForm/TopicForm.jsx';
+import React, { Component } from 'react';
+import TopicList from '../../components/Topic/TopicList/TopicList.jsx';
+import TopicForm from '../../components/Topic/TopicForm/TopicForm.jsx';
 import '../../css/style.min.css';
 
-
 class TopicPage extends Component {
-    constructor()
-    {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            topicName: 'Brun McIntyre',
-            topicText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?',
-
-            reviews: [
-                {
-                    name: 'Midd Spicer',
-                    review: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-                },
-                {
-                    name: 'Ron Morris',
-                    review: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                }
-            ],
+            topic: props.location.state.topic,
+            replies: [],
             validation: ''
         };
 
         this.submitForm = this.submitForm.bind(this);
     }
 
-    render()
-    {
+    componentDidMount() {
+        fetch(`http://localhost:4000/api/v1/forum/reply?topicId=${this.state.topic.id}`)
+            .then((res) => res.json())
+            .then((results) => {
+                const replies = [];
+
+                for (const reply of results.data.docs) {
+                    replies.push({
+                        id: reply._id,
+                        review: reply.body,
+                        author: reply.userId.email || reply.userId.username
+                    });
+                }
+
+                this.setState({ replies });
+            })
+            .catch((e) => {
+                console.log(e.message);
+            });
+    }
+
+    renderList() {
+        return <TopicList replies={this.state.replies} />;
+    }
+
+    renderForm() {
+        return <TopicForm submitForm={this.submitForm} validation={this.state.validation} />;
+    }
+
+    render() {
         return (
             <div className="bg-light-gray global-padding-bottom">
                 <section className="reviews">
-
-                        <div className="area align-center text-center row">
-                            <h1 className="small-12 medium-6 columns">
-                                <br />
-                                <br />
-                            </h1>
-                        </div>
-                   
-
+                    <div className="area align-center text-center row">
+                        <h1 className="small-12 medium-6 columns">
+                            <br />
+                            <br />
+                        </h1>
+                    </div>
                     <div className="row align-center content-margin-top-negative">
                         <div className="small-12 medium-8 large-6 columns">
                             <div className="content-padding bg-white area">
-
                                 <p className="font-size-medium">
-                                    <strong>{this.state.topicName}</strong>
+                                    <strong>{this.state.topic.title}</strong>
                                 </p>
                                 <p>
-                                    📌 <strong>{this.state.topicText}</strong>
+                                    <span role="img" aria-label="emoji">
+                                        📌{' '}
+                                    </span>
+                                    <strong>{this.state.topic.body}</strong>
                                 </p>
-
                                 {this.renderList()}
                             </div>
                             {this.renderForm()}
                         </div>
                     </div>
-
-
                 </section>
             </div>
-
         );
     }
 
-    renderList()
-    {
-        return <TopicList reviews={this.state.reviews}/>;
-    }
-
-    renderForm()
-    {
-        return <TopicForm submitForm={this.submitForm} validation={this.state.validation}/>;
-    }
-
-    submitForm(event)
-    {
+    submitForm(event, data) {
         event.preventDefault();
-        const reviews = this.state.reviews.slice();
 
-        if(event.target.name.value === '' || event.target.review.value === '') {
+        const { reply } = data;
+
+        // Validation
+        if (reply === '') {
             this.setState({
-                ...this.state,
                 validation: <div className="validation">Not all fields are completed!</div>
             });
 
             return;
         }
 
-        this.setState({
-            ...this.state,
-            topicName: this.state.topicName,
-            topicText: this.state.topicText,
-            validation: ''
-        });
-
-        reviews.push({
-            name: event.target.name.value,
-            review: event.target.review.value,
-        });
-
-        this.setState({
-            ...this.state,
-            topicName: this.state.topicName,
-            topicText: this.state.topicText,
-            reviews: reviews,
-            validation: ''
-        });
+        fetch('http://localhost:4000/api/v1/forum/reply', {
+            method: 'post',
+            body: JSON.stringify({
+                userId: '5fb7067961bc7b19dcc2a1dd',
+                topicId: this.state.topic.id,
+                body: reply
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.props.token}`
+            }
+        })
+            .then((res) => res.json())
+            .then((results) => {
+                console.log(results);
+            })
+            .catch((e) => {
+                console.log(e.messsage);
+            });
     }
-
 }
 
 export default TopicPage;

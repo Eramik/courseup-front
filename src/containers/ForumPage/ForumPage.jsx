@@ -1,50 +1,62 @@
-import React, {Component} from 'react';
-import ForumList from '../../components/UI/ForumList/ForumList.jsx';
-import ForumForm from '../../components/UI/ForumForm/ForumForm.jsx';
+import React, { Component } from 'react';
+import ForumList from '../../components/Forum/ForumList/ForumList.jsx';
+import ForumForm from '../../components/Forum/ForumForm/ForumForm.jsx';
+import { connect } from 'react-redux';
 import '../../css/style.min.css';
 
 class ForumPage extends Component {
-    constructor()
-    {   
+    constructor() {
         super();
 
         this.state = {
-            topics: [
-                {
-                    title: 'Midd Spicer',
-                    course: 'test',
-                    author: 'test',
-                    body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
-                },
-                {
-                    title: 'Ron Morris',
-                    course: 'test',
-                    author: 'test',
-                    body:
-                        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-                }
-            ],
+            topics: [],
             validation: ''
         };
 
         this.submitForm = this.submitForm.bind(this);
     }
 
+    componentDidMount() {
+        fetch('http://localhost:4000/api/v1/forum/topic', {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        })
+            .then((res) => res.json())
+            .then((results) => {
+                const topics = [];
+
+                for (const topic of results.data.docs) {
+                    topics.push({
+                        id: topic._id,
+                        body: topic.body,
+                        title: topic.title,
+                        course: topic.courseId.name,
+                        author: topic.userId.email
+                    });
+                }
+
+                this.setState({ topics });
+            })
+            .catch((e) => {
+                console.log(e.message);
+            });
+    }
+
     render() {
         return (
             <div className="bg-light-gray global-padding-bottom">
                 <section className="reviews">
-                        <div className="area align-center text-center row">
-                            <h1 className="small-12 medium-6 columns">
-                                <br />
-                                <br />
-                            </h1>
-                        </div>
+                    <div className="area align-center text-center row">
+                        <h1 className="small-12 medium-6 columns">
+                            <br />
+                            <br />
+                        </h1>
+                    </div>
                     <div className="row align-center content-margin-top-negative">
                         <div className="small-12 medium-8 large-6 columns">
-                            <div className="content-padding bg-white area">
-                                {this.renderList()}
-                            </div>
+                            <div className="content-padding bg-white area">{this.renderList()}</div>
                             {this.renderForm()}
                         </div>
                     </div>
@@ -54,48 +66,59 @@ class ForumPage extends Component {
     }
 
     renderList() {
-        return <ForumList topics={this.state.topics}/>;
+        return <ForumList topics={this.state.topics} />;
     }
 
     renderForm() {
-        return <ForumForm submitForm={this.submitForm} validation={this.state.validation}/>;
+        return (
+            <ForumForm
+                submitForm={this.submitForm}
+                validation={this.state.validation}
+                topics={this.state.topics}
+            />
+        );
     }
 
-    submitForm(event)
-    {
+    submitForm(event, data) {
         event.preventDefault();
-        const topics = this.state.topics.slice();
 
-        if(event.target.nameTopic.value === '' || event.target.topic.value === '') {
+        const { courseId, topicTitle, topicBody } = data;
+
+        // Validation
+        if (topicTitle === '' || topicBody === '' || !courseId) {
             this.setState({
-                ...this.state,
                 validation: <div className="validation">Not all fields are completed!</div>
             });
 
             return;
         }
-        
-        this.setState({
-            ...this.state,
-            topicName: this.state.topicName,
-            topicText: this.state.topicText,
-            validation: ''
-        });
 
-        topics.push({
-            nameTopic: event.target.nameTopic.value,
-            topic: event.target.topic.value,
-        });
-
-        this.setState({
-            ...this.state,
-            topicName: this.state.topicName,
-            topicText: this.state.topicText,
-            topics: topics,
-            validation: ''
-        });
+        fetch('http://localhost:4000/api/v1/forum/topic', {
+            method: 'post',
+            body: JSON.stringify({
+                userId: '5fb7067961bc7b19dcc2a1dd',
+                courseId,
+                title: topicTitle,
+                body: topicBody
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.props.token}`
+            }
+        })
+            .then((res) => res.json())
+            .then((results) => {
+                console.log(results);
+            })
+            .catch((e) => {
+                console.log(e.messsage);
+            });
     }
-
 }
 
-export default ForumPage;
+const mapStateToProps = (state) => ({
+    token: state.token,
+    user: state.userData
+});
+
+export default connect(mapStateToProps)(ForumPage);
