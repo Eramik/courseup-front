@@ -4,8 +4,14 @@ class ButtonSpecial extends Component {
     render()
     {
         return (
-            <button id="toggle" className={this.props.isActive ? 'button hide' : 'button'} onClick={this.props.showForm}>
-                Leave a review
+            <button
+                id="toggle"
+                className={this.props.isActive ? 'button hide' : 'button'}
+                onClick={this.props.showForm}
+            >
+                <span role="img" aria-label="create">
+                    ➕
+                </span>
             </button>
         );
     }

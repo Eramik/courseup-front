@@ -11,13 +11,18 @@ const Header = (props) => {
             <NavLink to="/" className={styles.HeaderImage}>
                 <img src={HeaderLogo} alt="logo" className={styles.HeaderImg}></img>
             </NavLink>
-            {props.token && (
+            {props.token && ([
                 <div className={styles.AuthSection}>
                     <NavLink to="/profile">
                             <Button>Profile</Button>
                     </NavLink>
+                </div>,
+                <div className={styles.AuthSection}>
+                  <NavLink to="/forum">
+                      <Button>Forum</Button>
+                  </NavLink>
                 </div>
-            )}
+            ])}
             <div className={styles.AuthSection}>
                 <NavLink to="/signUp">
                     <Button>Sign up</Button>

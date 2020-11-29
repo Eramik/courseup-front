@@ -11,7 +11,7 @@ class Form extends Component {
             isActive: false,
             isSubmitted: false,
             rating: 1,
-            name: '',
+            name: '',       
             review: '',
         };
 
