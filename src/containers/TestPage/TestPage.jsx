@@ -80,11 +80,16 @@ export class TestPage extends Component {
 
     render() {
         const videoUrl = `/courses/${this.props.match.params.courseId}/video/1`;
-        
-        let nextButton = null;
+        const reviewUrl = `/courses/${this.props.match.params.courseId}/review`;
+
         let backButton = (
             <Link to={videoUrl}>
                 <Button>Back to videos page</Button>
+            </Link>
+        );
+        let nextButton = (
+            <Link to={reviewUrl}>
+                <Button>Go to review</Button>
             </Link>
         );
 

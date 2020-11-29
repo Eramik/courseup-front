@@ -4,6 +4,8 @@ import loginImg from "../../login.svg";
 import Button from '../UI/Button/Button';
 import * as actions from '../../store/actions';
 import { connect } from 'react-redux';
+import cookies from 'js-cookie';
+import { withRouter } from "react-router-dom";
 
 export class Register extends React.Component {
   constructor(props){
@@ -27,6 +29,10 @@ export class Register extends React.Component {
     this.setState({password: event.target.value})
   }
 
+  componentDidMount() {
+      console.log(this.props);
+  }
+
   handleSubmit = async () => {
     const { username, email, password} = this.state;
 
@@ -35,8 +41,6 @@ export class Register extends React.Component {
         email,
         password
     };
-
-    console.log(authData);
 
     try {
         const rawResponse = await fetch('http://localhost:4000/api/v1/users/signup', {
@@ -53,7 +57,11 @@ export class Register extends React.Component {
         // Got token and user, save it to redux (and cookies)
         this.props.authSuccess(token, user);
 
-        // Save it to cookies, localStorage whatever
+        // Save it to cookies
+        cookies.set('token', token);
+        cookies.set('user', JSON.stringify(user));
+
+        this.props.history.push('/courses');
     } catch (e) {
         console.log(e.message);
     }
@@ -68,7 +76,7 @@ export class Register extends React.Component {
         <div className="header">Register</div>
         <div className="content">
           <div className="image">
-            <img src={loginImg} />
+            <img src={loginImg} alt="Register" />
           </div>
           <div className="form">
             <div className="form-group">
@@ -112,4 +120,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));
