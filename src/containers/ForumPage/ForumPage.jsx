@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import TopicList from '../../components/Topic/TopicList/TopicList.jsx';
-import TopicForm from '../../components/Topic/TopicForm/TopicForm.jsx';
+import ForumList from '../../components/Forum/ForumList/ForumList.jsx';
+import ForumForm from '../../components/Forum/ForumForm/ForumForm.jsx';
+import { connect } from 'react-redux';
 import '../../css/style.min.css';
 
-class TopicPage extends Component {
-    constructor(props) {
-        super(props);
+class ForumPage extends Component {
+    constructor() {
+        super();
 
         this.state = {
-            topic: props.location.state.topic,
-            replies: [],
+            topics: [],
             validation: ''
         };
 
@@ -17,32 +17,31 @@ class TopicPage extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:4000/api/v1/forum/reply?topicId=${this.state.topic.id}`)
+        fetch('http://localhost:4000/api/v1/forum/topic', {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        })
             .then((res) => res.json())
             .then((results) => {
-                const replies = [];
+                const topics = [];
 
-                for (const reply of results.data.docs) {
-                    replies.push({
-                        id: reply._id,
-                        review: reply.body,
-                        author: reply.userId.email || reply.userId.username
+                for (const topic of results.data.docs) {
+                    topics.push({
+                        id: topic._id,
+                        body: topic.body,
+                        title: topic.title,
+                        course: topic.courseId.name,
+                        author: topic.userId.email
                     });
                 }
 
-                this.setState({ replies });
+                this.setState({ topics });
             })
             .catch((e) => {
                 console.log(e.message);
             });
-    }
-
-    renderList() {
-        return <TopicList replies={this.state.replies} />;
-    }
-
-    renderForm() {
-        return <TopicForm submitForm={this.submitForm} validation={this.state.validation} />;
     }
 
     render() {
@@ -57,18 +56,7 @@ class TopicPage extends Component {
                     </div>
                     <div className="row align-center content-margin-top-negative">
                         <div className="small-12 medium-8 large-6 columns">
-                            <div className="content-padding bg-white area">
-                                <p className="font-size-medium">
-                                    <strong>{this.state.topic.title}</strong>
-                                </p>
-                                <p>
-                                    <span role="img" aria-label="emoji">
-                                        📌{' '}
-                                    </span>
-                                    <strong>{this.state.topic.body}</strong>
-                                </p>
-                                {this.renderList()}
-                            </div>
+                            <div className="content-padding bg-white area">{this.renderList()}</div>
                             {this.renderForm()}
                         </div>
                     </div>
@@ -77,13 +65,27 @@ class TopicPage extends Component {
         );
     }
 
+    renderList() {
+        return <ForumList topics={this.state.topics} />;
+    }
+
+    renderForm() {
+        return (
+            <ForumForm
+                submitForm={this.submitForm}
+                validation={this.state.validation}
+                topics={this.state.topics}
+            />
+        );
+    }
+
     submitForm(event, data) {
         event.preventDefault();
 
-        const { reply } = data;
+        const { courseId, topicTitle, topicBody } = data;
 
         // Validation
-        if (reply === '') {
+        if (topicTitle === '' || topicBody === '' || !courseId) {
             this.setState({
                 validation: <div className="validation">Not all fields are completed!</div>
             });
@@ -91,12 +93,13 @@ class TopicPage extends Component {
             return;
         }
 
-        fetch('http://localhost:4000/api/v1/forum/reply', {
+        fetch('http://localhost:4000/api/v1/forum/topic', {
             method: 'post',
             body: JSON.stringify({
                 userId: '5fb7067961bc7b19dcc2a1dd',
-                topicId: this.state.topic.id,
-                body: reply
+                courseId,
+                title: topicTitle,
+                body: topicBody
             }),
             headers: {
                 'Content-Type': 'application/json',
@@ -113,4 +116,9 @@ class TopicPage extends Component {
     }
 }
 
-export default TopicPage;
+const mapStateToProps = (state) => ({
+    token: state.token,
+    user: state.userData
+});
+
+export default connect(mapStateToProps)(ForumPage);
