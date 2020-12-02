@@ -57,7 +57,7 @@ class ForumPage extends Component {
                         </h1>
                     </div>
                     <div className="row align-center content-margin-top-negative">
-                        <div className="small-12 medium-8 large-6 columns">
+                        <div className="small-12 medium-200 large-200 columns">
                             <div className="content-padding bg-white area">{this.renderList()}</div>
                             {this.renderForm()}
                         </div>
