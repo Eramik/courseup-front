@@ -57,9 +57,9 @@ class TopicPage extends Component {
                         </h1>
                     </div>
                     <div className="row align-center content-margin-top-negative">
-                        <div className="small-12 medium-8 large-6 columns">
+                        <div className="small-12 medium-200 large-200 columns">
                             <div className="content-padding bg-white area">
-                                <p className="font-size-medium">
+                                <p className="font-size-large">
                                     <strong>{this.state.topic.title}</strong>
                                 </p>
                                 <p>
